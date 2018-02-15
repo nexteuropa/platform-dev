@@ -94,19 +94,25 @@ class DgtRulesTools {
       (TMGMT Job Item IDs: '@job_items'). You can not request the review for
       the content which is currently under translation process.
       Please finish ongoing processes and try again.",
-        array('@entity_id' => $entity_id, '@job_items' => $job_items)
+        array(
+          '@entity_id' => $entity_id,
+          '@job_items' => $job_items
+        )
       );
 
       drupal_set_message($error_message, 'error');
 
       // Logging an error to the watchdog.
       watchdog('ne_tmgmt_dgt_ftt_translator',
-        "Content type with ID: $entity_id is currently
+        "Content type with ID: @entity_id is currently
       included in one of the translation processes
-      (TMGMT Job Item IDs: $job_items). You can not request the review for
+      (TMGMT Job Item IDs: @job_items). You can not request the review for
       the content which is currently under translation process.
       Please finish ongoing processes and try again.",
-        array(),
+        array(
+          '@entity_id' => $entity_id,
+          '@job_items' => $job_items,
+        ),
         WATCHDOG_ERROR
       );
       return array_keys($results['tmgmt_job_item']);
@@ -168,9 +174,9 @@ class DgtRulesTools {
 
     // Logging an error to the watchdog.
     watchdog('ne_tmgmt_dgt_ftt_translator',
-      "The default TMGMT translator: '$default_translator' is not
+      "The default TMGMT translator: '@default_translator' is not
     available or is not configured correctly.",
-      array(),
+      array('@default_translator' => $default_translator),
       WATCHDOG_ERROR
     );
 

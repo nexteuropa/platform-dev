@@ -86,6 +86,14 @@ function ne_dgt_rules_rules_action_info() {
     'label' => t('FTT | Node | Send the translation request'),
     'group' => t('Next Europa DGT Rules'),
     'parameter' => array(
+      'direct_translation' => array(
+        'type' => 'boolean',
+        'label' => t('Direct translation'),
+        'description' => t("If enabled the translation request will be send directly to the DGT Service without checking if the review request was sent in beforehand."),
+        'default value' => FALSE,
+        'optional' => TRUE,
+        'restriction' => 'input',
+      ),
       'node' => array(
         'type' => 'node',
         'label' => t('Content'),
